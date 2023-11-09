@@ -1,4 +1,4 @@
-function MediaProcessing(req, res) {
+function MediaProcessingImage(req, res) {
   const imageUrl = `${req.protocol}://${req.get('host')}/images/${
     req.file.filename
   }`;
@@ -12,4 +12,19 @@ function MediaProcessing(req, res) {
 
   return;
 }
-module.exports = { MediaProcessing };
+
+function MediaProcessingVideos(req, res) {
+  const videoUrl = `${req.protocol}://${req.get('host')}/videos/${
+    req.file.filename
+  }`;
+
+  return res.status(200).json({
+    data: videoUrl,
+    message: 'success',
+    status: 200,
+    error: null,
+  });
+
+  return;
+}
+module.exports = { MediaProcessingImage, MediaProcessingVideos };
